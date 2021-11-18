@@ -44,7 +44,7 @@ public class Menulinks implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 250)
-    @Column(name = "menuName")
+    @Column(name = "menuname")
     private String menuName;
     @Basic(optional = false)
     @NotNull
@@ -52,7 +52,7 @@ public class Menulinks implements Serializable {
     private short status;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "isNode")
+    @Column(name = "isnode")
     private short isNode;
     @Size(max = 250)
     @Column(name = "parent")
@@ -61,7 +61,7 @@ public class Menulinks implements Serializable {
     @Column(name = "link")
     private String link;
     @Size(max = 250)
-    @Column(name = "iconExpression")
+    @Column(name = "iconexpression")
     private String iconExpression;
     @Basic(optional = false)
     @NotNull

@@ -73,8 +73,8 @@ public class Usersdata implements Serializable {
     @ManyToOne(optional = false)
     private Catalogs gender;
     @JoinColumns({
-        @JoinColumn(name = "catalogs_idTypes", referencedColumnName = "catalog"),
-        @JoinColumn(name = "catalogs_idType", referencedColumnName = "itemId")})
+        @JoinColumn(name = "catalogs_idtypes", referencedColumnName = "catalog"),
+        @JoinColumn(name = "catalogs_idtype", referencedColumnName = "itemId")})
     @ManyToOne(optional = false)
     private Catalogs documentType;
     @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
