@@ -17,7 +17,7 @@ public interface IJGSCRUDServices <T, ID> {
 	produces = MediaType.APPLICATION_JSON_VALUE, 
 	consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Guardar la entdidad en la base de datos",
-				  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se guardara en la base de datos. "
+				  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se guardara en la base de datos. \n"
 				  	  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario")
 	public @ResponseBody JGSResponse save(@RequestBody T entity);
 	
@@ -27,7 +27,7 @@ public interface IJGSCRUDServices <T, ID> {
 	produces = MediaType.APPLICATION_JSON_VALUE, 
 	consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Actualiza la entdidad en la base de datos",
-	  			  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se actualizara en la base de datos."
+	  			  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se actualizara en la base de datos. \n"
    					  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario")
 	public @ResponseBody JGSResponse update(@RequestBody T entity);
 	
@@ -35,8 +35,8 @@ public interface IJGSCRUDServices <T, ID> {
 	method = RequestMethod.GET, 
 	produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Busca una entdidad en la base de datos",
-	  			  notes="Recibe por URL el ID de una entidad que esta mapeada y la recuperara de la base de datos."
-	  				  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario"
+	  			  notes="Recibe por URL el ID de una entidad que esta mapeada y la recuperara de la base de datos. \n"
+	  				  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario \n"
 	  				  + "Responde con la entidad mapeada en el JGSResponse si la encuentra, null en caso contrario.")
 	public @ResponseBody JGSResponse findById(@PathVariable("id") ID entity);
 	
@@ -44,7 +44,7 @@ public interface IJGSCRUDServices <T, ID> {
 	method = RequestMethod.GET, 
 	produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Busca una todas las entradas de esta entidad en la base de datos",
-	  notes="Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario"
+	  notes="Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario \n"
 		  + "Responde con un arreglo con todas las entidades mapeadas en el JGSResponse si las encuentra, null en caso contrario.")
 	public @ResponseBody JGSResponse findAll();
 	
@@ -53,7 +53,7 @@ public interface IJGSCRUDServices <T, ID> {
 	produces = MediaType.APPLICATION_JSON_VALUE, 
 	consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Borra una entdidad en la base de datos",
-	  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se borrara en la base de datos."
+	  notes="Recibe por parametro un JSON con la entidad que esta mapeada y se borrara en la base de datos. \n"
 		  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario")
 	public @ResponseBody JGSResponse delete(@RequestBody T entity);
 }

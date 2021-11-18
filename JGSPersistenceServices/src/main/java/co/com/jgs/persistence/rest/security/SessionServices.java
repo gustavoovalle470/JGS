@@ -16,6 +16,7 @@ import co.com.jgs.bo.security.Sessions;
 import co.com.jgs.bo.security.SessionsPK;
 import co.com.jgs.persistence.rest.JGSCRUDServices;
 import co.com.jgs.persistence.rest.interfaces.IJGSCRUDServices;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value="/session/")
@@ -31,6 +32,11 @@ public class SessionServices extends JGSCRUDServices<Sessions, SessionsPK> imple
 	method = RequestMethod.POST, 
 	consumes = MediaType.APPLICATION_JSON_VALUE,
 	produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Busca una entdidad en la base de datos",
+	  notes="Recibe un JSON con el ID de una entidad que esta mapeada y la recuperara de la base de datos. \n"
+		  + "Responde un objecto de tipo JGSResponse con success true si la operacion finalizo con exito, false en caso contrario \n"
+		  + "Responde con la entidad mapeada en el JGSResponse si la encuentra, null en caso contrario. \n"
+		  + "Este metodo reemplaza la version original con ID primitivo por uno con ID compuesto.")
 	public @ResponseBody JGSResponse findByComplexId(@RequestBody SessionsPK sessionPK) {
 		return findById(sessionPK);
 	}
