@@ -8,22 +8,22 @@ public class JGSResponse {
 	private boolean success;
 	
 	public JGSResponse() {
-		this.objectToReturn = null;
-		this.messageResponse = null;
-		this.success = false;
+		objectToReturn = null;
+		messageResponse = null;
+		success = false;
 	}
 	
 	public void setSuccessOperation(Object objectToReturn, Messages messages, String data) {
 		this.objectToReturn = objectToReturn;
-		this.messageResponse = messages;
-		this.messageResponse.replaceData(data);
-		this.success = true;
+		messageResponse = messages;
+                replaceData(data);
+		success = true;
 	}
 	
 	public void setSuccessOperation(Object objectToReturn, Messages messages) {
-		this.objectToReturn = objectToReturn;
-		this.messageResponse = messages;
-		this.success = true;
+		objectToReturn = objectToReturn;
+		messageResponse = messages;
+		success = true;
 	}
 
 	public Object getObjectToReturn() {
@@ -44,10 +44,20 @@ public class JGSResponse {
 
 	public void setMessageResponse(Messages messageResponse, String data) {
 		this.messageResponse = messageResponse;
-		this.messageResponse.replaceData(data);
+		replaceData(data);
 	}
 	
 	public boolean isSuccess() {
 		return success;
 	}
+        
+        /**
+     * Reemplaza todos los & por la data de usuario, esta vendra separada por coma.
+     * @param allData String la data a reemplazar separada por coma.
+     */
+    public void replaceData(String allData){
+        for(String data: allData.split(",")){
+            this.messageResponse.setMessage(this.messageResponse.getMessage().replaceFirst("&", data));
+        }
+    }
 }
