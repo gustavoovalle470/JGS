@@ -11,11 +11,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import co.com.jgs.bo.security.AuditLogs;
 import co.com.jgs.persistence.rest.JGSCRUDServices;
 import co.com.jgs.persistence.rest.interfaces.IJGSCRUDServices;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping(value="/auditlog/")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST})
 @JsonInclude(Include.NON_NULL)
+@Api( tags = "AuditLogServices")
 public class AuditLogServices extends JGSCRUDServices<AuditLogs, Integer> implements IJGSCRUDServices<AuditLogs, Integer>{
 	
 	public AuditLogServices() {

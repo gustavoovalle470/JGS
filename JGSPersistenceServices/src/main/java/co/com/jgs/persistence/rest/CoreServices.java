@@ -1,7 +1,5 @@
 package co.com.jgs.persistence.rest;
 
-import java.util.Calendar;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,12 +12,10 @@ import co.com.jgs.ReleaseController;
 import co.com.jgs.base.response.JGSResponse;
 import co.com.jgs.base.utils.JGSSecurityUtils;
 import co.com.jgs.bo.security.JGSAuthentication;
-import co.com.jgs.bo.security.Sessions;
-import co.com.jgs.bo.security.SessionsPK;
 import co.com.jgs.bo.security.Users;
-import co.com.jgs.persistence.DAO.security.SessionsDAO;
 import co.com.jgs.persistence.DAO.security.UsersDAO;
 import co.com.jgs.persistence.DAO.system.MessagesDAO;
+import co.com.jgs.persistence.DAO.system.ModuleConfigurationsDAO;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -32,7 +28,7 @@ public class CoreServices {
 	@Autowired
 	protected UsersDAO userDao;
 	@Autowired
-	protected SessionsDAO sessionDao;
+	protected ModuleConfigurationsDAO mcDao;
 	
 	@RequestMapping(value="status", 
 	method = RequestMethod.GET, 
@@ -86,23 +82,8 @@ public class CoreServices {
 		return response;
 	}
 
-	private Sessions getSession(Users user) {
-		Sessions session = sessionDao.findByUsername(user.getUsername());
-		if(session == null){
-			session = new Sessions(new SessionsPK(user.getUsername(), getSessionId()));
-			session.setStartIn(Calendar.getInstance().getTime());
-			session.setUsers(user);
-			sessionDao.save(session);
-		}
-		return session;
-	}
-
-	private String getSessionId() {
-		while(true) {
-			String sessionId = JGSSecurityUtils.getAlphaNumericString(45);
-			if(sessionDao.findBySessionId(sessionId)==null) {
-				return sessionId;
-			}
-		}
+	private String getSession(Users user) {
+		return JGSSecurityUtils.getJWTToken(user.getUsername(), 
+				Integer.parseInt(mcDao.findById(1).get().getValue()));
 	}
 }
