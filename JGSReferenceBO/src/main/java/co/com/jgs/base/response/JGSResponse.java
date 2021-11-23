@@ -21,7 +21,7 @@ public class JGSResponse {
 	}
 	
 	public void setSuccessOperation(Object objectToReturn, Messages messages) {
-		objectToReturn = objectToReturn;
+		this.objectToReturn = objectToReturn;
 		messageResponse = messages;
 		success = true;
 	}
