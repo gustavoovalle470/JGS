@@ -6,6 +6,7 @@
 package co.com.jgs.bo.system;
 
 import co.com.jgs.bo.security.Users;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -36,6 +37,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Moduleconfigurations.findByValue", query = "SELECT m FROM Moduleconfigurations m WHERE m.value = :value"),
     @NamedQuery(name = "Moduleconfigurations.findByLastChange", query = "SELECT m FROM Moduleconfigurations m WHERE m.lastChange = :lastChange"),
     @NamedQuery(name = "Moduleconfigurations.findByRowVersion", query = "SELECT m FROM Moduleconfigurations m WHERE m.rowVersion = :rowVersion")})
+@JsonIgnoreProperties({"last_change", "row_version", "lastUserChange"})
 public class Moduleconfigurations implements Serializable {
 
     private static final long serialVersionUID = 1L;

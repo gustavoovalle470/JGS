@@ -6,6 +6,7 @@
 package co.com.jgs.bo.system;
 
 import co.com.jgs.bo.security.Users;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -36,6 +37,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Messages.findByMessage", query = "SELECT m FROM Messages m WHERE m.message = :message"),
     @NamedQuery(name = "Messages.findByLastChange", query = "SELECT m FROM Messages m WHERE m.lastChange = :lastChange"),
     @NamedQuery(name = "Messages.findByRowVersion", query = "SELECT m FROM Messages m WHERE m.rowVersion = :rowVersion")})
+@JsonIgnoreProperties({"lastChange", "rowVersion", "lastUserChange"})
 public class Messages implements Serializable {
 
     private static final long serialVersionUID = 1L;

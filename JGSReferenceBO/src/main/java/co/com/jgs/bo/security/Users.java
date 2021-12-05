@@ -7,6 +7,7 @@ package co.com.jgs.bo.security;
 
 import co.com.jgs.bo.system.Catalogs;
 import co.com.jgs.bo.subscription.Companies;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
@@ -85,7 +86,6 @@ public class Users implements Serializable {
     private Catalogs userStatus;
     @JoinColumn(name = "companyid", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonProperty("companIdy")
     private Companies companyId;
 
     public Users() {

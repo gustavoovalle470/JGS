@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import co.com.jgs.bo.subscription.Licenses;
 
-public interface LicencesDAO extends CrudRepository<Licenses, String> {
+public interface LicensesDAO extends CrudRepository<Licenses, String> {
 
 }

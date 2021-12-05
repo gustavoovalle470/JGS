@@ -23,6 +23,8 @@
     <class>co.com.jgs.bo.security.Users</class>
     <class>co.com.jgs.bo.security.AuditLogs</class>
     <class>co.com.jgs.bo.security.Sessions</class>
+    <class>co.com.jgs.bo.security.Operations</class>
+    <class>co.com.jgs.bo.security.Services</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jgs?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="jgsadmin"/>

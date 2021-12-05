@@ -1,5 +1,7 @@
 co\com\jgs\bo\subscription\Companies.class
 co\com\jgs\bo\utils\StatesPK.class
+co\com\jgs\persistence\DAO\subscription\LicensesDAO.class
+co\com\jgs\persistence\DAO\system\OperationsDAO.class
 co\com\jgs\persistence\DAO\utils\CountriesDAO.class
 co\com\jgs\bo\subscription\Modules.class
 co\com\jgs\persistence\DAO\subscription\CompaniesDAO.class
@@ -13,11 +15,12 @@ co\com\jgs\persistence\DAO\system\ModuleConfigurationsDAO.class
 co\com\jgs\base\response\JGSResponse.class
 co\com\jgs\bo\system\CatalogsPK.class
 co\com\jgs\persistence\DAO\security\UsersDataDAO.class
+co\com\jgs\bo\security\Services.class
+co\com\jgs\bo\security\SessionsPK.class
 co\com\jgs\persistence\DAO\subscription\ModulesDAO.class
+co\com\jgs\persistence\DAO\security\SessionsDAO.class
 co\com\jgs\persistence\DAO\security\AuditLogDAO.class
-co\com\jgs\base\utils\JGSSecurityUtils.class
 co\com\jgs\bo\utils\States.class
-co\com\jgs\base\utils\JWTAuthorizationFilter.class
 co\com\jgs\bo\subscription\Licenses.class
 co\com\jgs\persistence\DAO\system\MessagesDAO.class
 co\com\jgs\persistence\DAO\system\CatalogsDAO.class
@@ -26,7 +29,10 @@ co\com\jgs\bo\security\Menulinks.class
 co\com\jgs\bo\system\Catalogs.class
 co\com\jgs\bo\security\Users.class
 co\com\jgs\bo\system\Messages.class
+co\com\jgs\bo\security\Operations.class
+co\com\jgs\bo\security\OperationsPK.class
 co\com\jgs\bo\security\Usersdata.class
+co\com\jgs\persistence\DAO\system\ServicesDAO.class
 co\com\jgs\bo\security\JGSAuthentication.class
-co\com\jgs\persistence\DAO\subscription\LicencesDAO.class
+co\com\jgs\bo\security\Sessions.class
 co\com\jgs\persistence\DAO\security\MenuLinksDAO.class

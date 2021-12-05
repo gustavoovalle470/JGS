@@ -6,12 +6,16 @@
 package co.com.jgs.bo.subscription;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -63,6 +67,11 @@ public class Licenses implements Serializable {
     @Column(name = "last_change")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastChange;
+    @JoinTable(name = "moduleforlicense", joinColumns = {
+        @JoinColumn(name = "Modules_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "licenses_id", referencedColumnName = "id")})
+    @ManyToMany
+    private List<Modules> modules;
     @Basic(optional = false)
     @NotNull
     @Column(name = "row_version")
@@ -70,7 +79,7 @@ public class Licenses implements Serializable {
     @JoinColumn(name = "company", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Companies company;
-
+    
     public Licenses() {
     }
 
@@ -141,6 +150,14 @@ public class Licenses implements Serializable {
 
     public void setCompany(Companies company) {
         this.company = company;
+    }
+
+    public List<Modules> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<Modules> modules) {
+        this.modules = modules;
     }
 
     @Override
