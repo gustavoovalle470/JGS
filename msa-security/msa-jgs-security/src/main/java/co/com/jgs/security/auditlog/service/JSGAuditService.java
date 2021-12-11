@@ -42,8 +42,8 @@ public class JSGAuditService {
 		AuditLogs auditLog = new AuditLogs();
 		auditLog.setMethodInvoked(auditData.getOperation().getName());
 		auditLog.setOperationDate(Calendar.getInstance().getTime());
-		auditLog.setParametersInvoked(auditData.getInput().toString());
-		auditLog.setResponseMessage(auditData.getOutput().getMessageResponse().getMessage());
+		auditLog.setParametersInvoked(auditData.getInput()!=null?auditData.getInput().toString():"Sin datos de entrada.");
+		auditLog.setResponseMessage(auditData.getOutput().getMessageResponse()!=null?auditData.getOutput().getMessageResponse().getMessage():"Sin mensaje de respuesta.");
 		auditLog.setSuccesOperation(""+auditData.getOutput().isSuccess());
 		auditLog.setUsername(auditData.getUser());
 		auditLog.setWsinvoked(auditData.getOperation().getPath());
