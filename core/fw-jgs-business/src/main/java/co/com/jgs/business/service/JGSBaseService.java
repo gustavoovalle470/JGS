@@ -21,7 +21,8 @@ import co.com.jgs.persistence.DAO.system.MessagesDAO;
 import co.com.jgs.persistence.DAO.system.OperationsDAO;
 import co.com.jgs.persistence.DAO.system.ServicesDAO;
 import co.com.jgs.security.auditlog.model.JGSAuditData;
-import co.com.jgs.security.client.SecurityClient;
+import co.com.jgs.security.auditlog.service.JGSAuditService;
+import co.com.jgs.security.session.service.JGSSessionServices;
 import java.io.IOException;
 
 /**
@@ -47,11 +48,14 @@ public abstract class JGSBaseService <IN extends JGSInput, OUT extends JGSOuput>
 	private OperationsDAO operationDao;
 	@Autowired
 	private UsersDAO userDao;
-        private SecurityClient securityClient;
         @Autowired        
         protected MessagesDAO messageDao;
         @Autowired
 	private LicensesDAO licenseDao;
+        @Autowired
+	private JGSAuditService auditService;
+        @Autowired
+	private JGSSessionServices sesiontService;
 	protected JGSContext context;
 	protected List<String> returnMessages;
         
@@ -82,7 +86,6 @@ public abstract class JGSBaseService <IN extends JGSInput, OUT extends JGSOuput>
 	 */	
 	public OUT executeService(IN input) throws JGSServiceException {
             returnMessages = returnMessages=new ArrayList<>();
-            securityClient = new SecurityClient(getURLServer());
             context = beforeExecute(input);
             if(context!= null && returnMessages.isEmpty()){
                 OUT output = execute(input);
@@ -157,36 +160,26 @@ public abstract class JGSBaseService <IN extends JGSInput, OUT extends JGSOuput>
             System.out.println("Context operation: "+context.getOperation().getName());
             System.out.println("Auditable?: "+context.getOperation().getAuditable());
             if(context.getOperation().getAuditable() == 1) {
-                try {
-                    JGSAuditData data = new JGSAuditData();
-                    data.setInput(inputs);
-                    data.setOperation(context.getOperation());
-                    data.setOutput(output);
-                    data.setUser(context.getUser());
-                    JGSOuput out = securityClient.registryAudit(data);
-                    System.out.println("Se registro auditoria? "+out.isSuccess());
-                    for(String mensaje: out.getErrorMessages()){
-                        System.out.println("MENSAJE: "+mensaje);
-                    }
-                    
-                } catch (JGSServiceException e) {
-                    log.error(e.getMessage());
+                JGSAuditData data = new JGSAuditData();
+                data.setInput(inputs);
+                data.setOperation(context.getOperation());
+                data.setOutput(output);
+                data.setUser(context.getUser());
+                JGSOuput out = auditService.registerAudit(data);
+                System.out.println("Se registro auditoria? "+out.isSuccess());
+                for(String mensaje: out.getErrorMessages()){
+                    System.out.println("MENSAJE: "+mensaje);
                 }
             }
 	}
         
         public boolean validateSession(String username, String sessionId){
-            try {
-                JGSOuput response = securityClient.validateSession(username, sessionId);
-                if(response.isSuccess()){
-                    return (boolean) securityClient.validateSession(username, sessionId).getObjectToReturn();
-                }else{
-                    returnMessages = response.getErrorMessages();
-                    returnMessages.add(response.getMessageResponse().getMessage());
-                    return false;
-                }
-            } catch (JGSServiceException | IOException e) {
-                log.error(e.getMessage());
+            JGSOuput response = sesiontService.validateSession(username, sessionId);
+            if(response.isSuccess()){
+                return (boolean) response.getObjectToReturn();
+            }else{
+                returnMessages = response.getErrorMessages();
+                returnMessages.add(response.getMessageResponse().getMessage());
                 return false;
             }
 	}
