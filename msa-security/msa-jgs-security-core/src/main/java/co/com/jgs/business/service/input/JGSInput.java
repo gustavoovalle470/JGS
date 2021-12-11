@@ -38,6 +38,6 @@ public class JGSInput{
 	}
 
 	public String toString() {
-		return " SessionId: "+getSessionId()+", LicenseId: "+getLicense();
+		return "Username: "+getUsername()+", LicenseId: "+getLicense();
 	}
 }
