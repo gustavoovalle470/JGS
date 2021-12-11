@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.jgs.business.service.enums.ServiceReturns;
 import co.com.jgs.business.service.output.JGSOuput;
 import co.com.jgs.security.auditlog.model.JGSAuditData;
-import co.com.jgs.security.auditlog.service.JSGAuditService;
+import co.com.jgs.security.auditlog.service.JGSAuditService;
 
 /**
  * Define el controlador de auditoria que generara los logs de utilizacion de operaciones auditables.
@@ -26,7 +26,7 @@ import co.com.jgs.security.auditlog.service.JSGAuditService;
 @CrossOrigin
 public class AuditLogController {
 	@Autowired
-	JSGAuditService auditService;
+	JGSAuditService auditService;
 	
 	@PostMapping("/v1/register-audit")
 	public JGSOuput registerAudit(@RequestBody JGSAuditData auditData) {

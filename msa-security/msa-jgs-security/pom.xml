@@ -40,15 +40,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		 	<groupId>co.com.jgs.security</groupId>
-			<artifactId>msa-jgssecurity-core</artifactId>
-			<version>1.0.0</version>
-		 </dependency>
-		 <dependency>
-		 	<groupId>co.com.jgs.security</groupId>
-			<artifactId>msa-jgssecurity-client</artifactId>
-			<version>1.0.0</version>
-		 </dependency>
+			<groupId>co.com.jgs.core</groupId>
+    		<artifactId>fw-jgs-business</artifactId>
+    		<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
