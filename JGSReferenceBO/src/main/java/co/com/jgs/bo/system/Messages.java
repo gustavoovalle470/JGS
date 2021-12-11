@@ -170,4 +170,14 @@ public class Messages implements Serializable {
     public String toString() {
         return "co.com.jgs.bo.Messages[ id=" + id + " ]";
     }
+    
+    /**
+     * Reemplaza todos los & por la data de usuario, esta vendra separada por coma.
+     * @param allData String la data a reemplazar separada por coma.
+     */
+    public void replaceData(String allData){
+        for(String data: allData.split(",")){
+            setMessage(getMessage().replaceFirst("&", data));
+        }
+    }
 }

@@ -6,10 +6,10 @@
 package co.com.jgs.bo.subscription;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -67,10 +67,7 @@ public class Licenses implements Serializable {
     @Column(name = "last_change")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastChange;
-    @JoinTable(name = "moduleforlicense", joinColumns = {
-        @JoinColumn(name = "Modules_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "licenses_id", referencedColumnName = "id")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "licenses")
     private List<Modules> modules;
     @Basic(optional = false)
     @NotNull

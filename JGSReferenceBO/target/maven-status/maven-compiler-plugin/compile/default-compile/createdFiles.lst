@@ -12,7 +12,6 @@ co\com\jgs\bo\system\Moduleconfigurations.class
 co\com\jgs\persistence\DAO\utils\StatesDAO.class
 co\com\jgs\bo\utils\Cities.class
 co\com\jgs\persistence\DAO\system\ModuleConfigurationsDAO.class
-co\com\jgs\base\response\JGSResponse.class
 co\com\jgs\bo\system\CatalogsPK.class
 co\com\jgs\persistence\DAO\security\UsersDataDAO.class
 co\com\jgs\bo\security\Services.class

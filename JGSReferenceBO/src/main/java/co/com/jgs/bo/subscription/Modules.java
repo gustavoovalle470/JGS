@@ -5,12 +5,18 @@
  */
 package co.com.jgs.bo.subscription;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -18,6 +24,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -63,6 +70,12 @@ public class Modules implements Serializable {
     @NotNull
     @Column(name = "row_version")
     private int rowVersion;
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "moduleforlicense", 
+        joinColumns = @JoinColumn(name = "modules_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(name = "licenses_id", referencedColumnName = "id"))
+    private List<Licenses> licenses;
 
     public Modules() {
     }
@@ -127,24 +140,12 @@ public class Modules implements Serializable {
         this.rowVersion = rowVersion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public List<Licenses> getLicenses() {
+        return licenses;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Modules)) {
-            return false;
-        }
-        Modules other = (Modules) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setLicenses(List<Licenses> licenses) {
+        this.licenses = licenses;
     }
 
     @Override
