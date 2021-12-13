@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * ***********************************************************************************************************
  * | VERSION |   FECHA    |    AUTOR    |						 COMENTARIOS								 |
  * ***********************************************************************************************************
- * |   1.0   | 03/12/2021 |  OvalleGA   | Creacion la aplicacion de seguridad.							     |
+ * |   1.0   | 03/12/2021 |  OvalleGA   | Creacion la aplicacion de seguridad.		.					     |
  * ***********************************************************************************************************
  */
 @SpringBootApplication
